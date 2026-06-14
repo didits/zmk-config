@@ -6,14 +6,33 @@
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/rgb.h>
 
 / {
+    macros {
+        enter_red: enter_red {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&rgb_ug RGB_COLOR_HSB(0,100,40)>   /* merah */
+                , <&kp RET>;
+        };
+
+        mute_blue: mute_blue {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&rgb_ug RGB_COLOR_HSB(240,100,40)>  /* biru */
+                , <&kp C_MUTE>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             bindings = <
-                &kp RET   &kp C_MUTE
+                &enter_red   &mute_blue
             >;
         };
     };
